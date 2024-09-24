@@ -63,6 +63,6 @@ public class SearchFunctionService {
     }
 
     public List<Album> searchAlbumByArtistName(String artistName) {
-        return null;
+        return albumRepository.findByArtist_ArtistName(artistName);
     }
 }
