@@ -1,5 +1,6 @@
 package com.SearchFunction.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.util.List;
 
@@ -7,6 +8,7 @@ import java.util.List;
 public class Artists {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private int id;
 
     @Column(name = "artist_name", nullable = false)
@@ -19,6 +21,7 @@ public class Artists {
     private Integer albumDate;
 
     @OneToMany(mappedBy = "artist", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Album> albums;
 
     public Artists() {

@@ -1,6 +1,7 @@
 package com.SearchFunction.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
 public class Album {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private int id;
 
     @Column(name = "album_name", nullable = false, length = 50)
@@ -18,10 +20,12 @@ public class Album {
     private LocalDate releaseDate;
 
     @OneToMany(mappedBy = "album", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Media> mediaList;
 
     @ManyToOne
     @JoinColumn(name = "artist_id", nullable = false)
+    @JsonIgnore
     private Artists artist;
 
     public Album() {
