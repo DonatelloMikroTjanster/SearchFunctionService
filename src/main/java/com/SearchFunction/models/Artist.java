@@ -2,44 +2,32 @@ package com.SearchFunction.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
+@Table(name = "artist")
 public class Artist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonIgnore
-    private int id;
+    private Long id;
 
-    @Column(name = "artist_name", nullable = false)
+    @Column(name = "name", nullable = false, length = 100)
     private String artistName;
 
-    @Column(name = "genre", nullable = false)
-    private String genre;
-
-    @Column(name = "album_date")
-    private Integer albumDate;
-
-    @OneToMany(mappedBy = "artist", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonIgnore
-    private List<Album> albums;
-
+    @ManyToMany(mappedBy = "artists", cascade = CascadeType.ALL)
+    private Set<Album> albums = new HashSet<>();
     public Artist() {
     }
 
-    public Artist(int id, String artistName, String genre, Integer albumDate, List<Album> albums) {
-        this.id = id;
-        this.artistName = artistName;
-        this.genre = genre;
-        this.albumDate = albumDate;
-        this.albums = albums;
-    }
-
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -51,27 +39,11 @@ public class Artist {
         this.artistName = artistName;
     }
 
-    public String getGenre() {
-        return genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
-
-    public Integer getAlbumDate() {
-        return albumDate;
-    }
-
-    public void setAlbumDate(Integer albumDate) {
-        this.albumDate = albumDate;
-    }
-
-    public List<Album> getAlbums() {
+    public Set<Album> getAlbums() {
         return albums;
     }
 
-    public void setAlbums(List<Album> albums) {
+    public void setAlbums(Set<Album> albums) {
         this.albums = albums;
     }
 }
