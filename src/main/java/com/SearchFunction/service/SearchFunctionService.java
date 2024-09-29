@@ -1,7 +1,7 @@
 package com.SearchFunction.service;
 
 import com.SearchFunction.models.Album;
-import com.SearchFunction.models.Artists;
+import com.SearchFunction.models.Artist;
 import com.SearchFunction.models.Media;
 import com.SearchFunction.models.Users;
 import com.SearchFunction.repository.AlbumRepository;
@@ -34,17 +34,17 @@ public class SearchFunctionService {
         return usersRepository.findByUsername(username);
     }
 
-    public List<Artists> searchArtistByName(String artistName) {
+    public List<Artist> searchArtistByName(String artistName) {
         return artistRepository.findByArtistNameContainingIgnoreCase(artistName);
     }
-    public List<Artists> searchArtistByGenre(String genre) {
+    public List<Artist> searchArtistByGenre(String genre) {
         return artistRepository.findByGenreContainingIgnoreCase(genre);
     }
 
     public List<Album> searchAlbumByName(String albumName) {
         return albumRepository.findByAlbumNameContainingIgnoreCase(albumName);
     }
-    public List<Artists> searchArtistByAlbumDate(int albumDate) {
+    public List<Artist> searchArtistByAlbumDate(int albumDate) {
         return artistRepository.findByAlbumDate(albumDate);
     }
 

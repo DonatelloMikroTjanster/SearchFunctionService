@@ -1,51 +1,39 @@
 package com.SearchFunction.models;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Album {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonIgnore
-    private int id;
+    private Long id;
 
-    @Column(name = "album_name", nullable = false, length = 50)
+    @Column(name = "name", nullable = false, length = 100)
     private String albumName;
 
-    @Column(name = "release_date", length = 50)
-    private LocalDate releaseDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @Column(name = "release_date")
+    private Date releaseDate;
 
     @OneToMany(mappedBy = "album", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Media> mediaList;
 
-    @ManyToOne
-    @JoinColumn(name = "artist_id", nullable = false)
+    @ManyToMany
     @JsonIgnore
-    private Artists artist;
+    @JoinTable(name = "album_artist", joinColumns = @JoinColumn(name = "album_id"), inverseJoinColumns = @JoinColumn(name = "artist_id"))
+    private Set<Artist> artists = new HashSet<>();
 
     public Album() {
-    }
-
-    public Album(int id, String albumName, LocalDate releaseDate, List<Media> mediaList, Artists artist) {
-        this.id = id;
-        this.albumName = albumName;
-        this.releaseDate = releaseDate;
-        this.mediaList = mediaList;
-        this.artist = artist;
-    }
-
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getAlbumName() {
@@ -56,11 +44,19 @@ public class Album {
         this.albumName = albumName;
     }
 
-    public LocalDate getReleaseDate() {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Date getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(LocalDate releaseDate) {
+    public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
     }
 
@@ -72,11 +68,11 @@ public class Album {
         this.mediaList = mediaList;
     }
 
-    public Artists getArtist() {
-        return artist;
+    public Set<Artist> getArtist() {
+        return artists;
     }
 
-    public void setArtist(Artists artist) {
-        this.artist = artist;
+    public void setArtist(Set<Artist> artist) {
+        this.artists = artist;
     }
 }

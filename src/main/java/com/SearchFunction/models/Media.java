@@ -2,7 +2,6 @@ package com.SearchFunction.models;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 public class Media {
@@ -27,7 +26,7 @@ public class Media {
     private Album album;
     @ManyToOne
     @JoinColumn(name = "artist_id")
-    private Artists artist;
+    private Artist artist;
 
     public Media() {
     }

@@ -1,17 +1,16 @@
 package com.SearchFunction.repository;
 
-import com.SearchFunction.models.Artists;
+import com.SearchFunction.models.Artist;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
-import java.util.Optional;
 
-public interface ArtistRepository extends JpaRepository<Artists, Integer> {
+public interface ArtistRepository extends JpaRepository<Artist, Long> {
 
 
-    List<Artists> findByArtistNameContainingIgnoreCase(String artistName);
+    List<Artist> findByArtistNameContainingIgnoreCase(String artistName);
 
-    List<Artists> findByGenreContainingIgnoreCase(String genre);
+    List<Artist> findByGenreContainingIgnoreCase(String genre);
 
-    List<Artists> findByAlbumDate(int albumDate);
+    List<Artist> findByAlbumDate(int albumDate);
 }

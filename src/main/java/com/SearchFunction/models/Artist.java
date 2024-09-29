@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-public class Artists {
+public class Artist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonIgnore
@@ -24,10 +24,10 @@ public class Artists {
     @JsonIgnore
     private List<Album> albums;
 
-    public Artists() {
+    public Artist() {
     }
 
-    public Artists(int id, String artistName, String genre, Integer albumDate, List<Album> albums) {
+    public Artist(int id, String artistName, String genre, Integer albumDate, List<Album> albums) {
         this.id = id;
         this.artistName = artistName;
         this.genre = genre;
