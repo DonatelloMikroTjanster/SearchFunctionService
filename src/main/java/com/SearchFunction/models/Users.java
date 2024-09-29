@@ -5,10 +5,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
+@Table(name = "users")
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -34,22 +35,11 @@ public class Users {
     public Users() {
     }
 
-    public Users(int id, String name, String lastName, String username, String email, String password, String role, boolean enabled) {
-        this.id = id;
-        this.name = name;
-        this.lastName = lastName;
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.role = role;
-        this.enabled = enabled;
-    }
-
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
