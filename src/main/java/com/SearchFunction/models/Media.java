@@ -27,9 +27,6 @@ public class Media {
     @Column(name = "url", nullable = false, length = 100)
     private String url;
 
-
-
-
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinColumn(name = "album_id")
     private Album album;
