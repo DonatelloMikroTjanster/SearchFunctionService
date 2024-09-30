@@ -27,6 +27,10 @@ public class Media {
     @Column(name = "url", nullable = false, length = 100)
     private String url;
 
+    @Column(name = "duration", nullable = false, length = 100)
+    private String duration;
+
+
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinColumn(name = "album_id")
     private Album album;
@@ -40,8 +44,13 @@ public class Media {
     public Media() {
     }
 
+    public Long getId() {
+        return id;
+    }
 
-
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;
@@ -59,20 +68,12 @@ public class Media {
         this.mediaCategory = mediaCategory;
     }
 
-    public Long getId() {
-        return id;
+    public String getGenre() {
+        return genre;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Set<Artist> getArtists() {
-        return artists;
-    }
-
-    public void setArtists(Set<Artist> artists) {
-        this.artists = artists;
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 
     public LocalDate getReleaseDate() {
@@ -91,11 +92,27 @@ public class Media {
         this.url = url;
     }
 
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
+
     public Album getAlbum() {
         return album;
     }
 
     public void setAlbum(Album album) {
         this.album = album;
+    }
+
+    public Set<Artist> getArtists() {
+        return artists;
+    }
+
+    public void setArtists(Set<Artist> artists) {
+        this.artists = artists;
     }
 }
