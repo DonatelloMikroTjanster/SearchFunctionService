@@ -18,15 +18,17 @@ public class Media {
     @Column(name = "media_type", nullable = false, length = 100)
     private String mediaCategory;
 
-
-  /*  @Column(name = "genre", nullable = false)
-    private String genre; */
+    @Column(name = "genre", nullable = false, length = 100)
+    private String genre;
 
     @Column(name = "release_date", nullable = false, length = 100)
     private LocalDate releaseDate;
 
     @Column(name = "url", nullable = false, length = 100)
     private String url;
+
+
+
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinColumn(name = "album_id")
