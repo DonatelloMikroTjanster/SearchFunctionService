@@ -25,9 +25,9 @@ public class Album {
     @Column(name = "release_date")
     private Date releaseDate;
 
-    @OneToMany(mappedBy = "album", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "album", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonIgnore
-    private List<Media> mediaList;
+    private Set<Media> media = new HashSet<>();
 
     @ManyToMany
     @JsonIgnore
@@ -35,14 +35,6 @@ public class Album {
     private Set<Artist> artists = new HashSet<>();
 
     public Album() {
-    }
-
-    public String getAlbumName() {
-        return albumName;
-    }
-
-    public void setAlbumName(String albumName) {
-        this.albumName = albumName;
     }
 
     public Long getId() {
@@ -53,6 +45,14 @@ public class Album {
         this.id = id;
     }
 
+    public String getAlbumName() {
+        return albumName;
+    }
+
+    public void setAlbumName(String albumName) {
+        this.albumName = albumName;
+    }
+
     public Date getReleaseDate() {
         return releaseDate;
     }
@@ -61,19 +61,19 @@ public class Album {
         this.releaseDate = releaseDate;
     }
 
-    public List<Media> getMediaList() {
-        return mediaList;
+    public Set<Media> getMedia() {
+        return media;
     }
 
-    public void setMediaList(List<Media> mediaList) {
-        this.mediaList = mediaList;
+    public void setMedia(Set<Media> media) {
+        this.media = media;
     }
 
-    public Set<Artist> getArtist() {
+    public Set<Artist> getArtists() {
         return artists;
     }
 
-    public void setArtist(Set<Artist> artist) {
-        this.artists = artist;
+    public void setArtists(Set<Artist> artists) {
+        this.artists = artists;
     }
 }

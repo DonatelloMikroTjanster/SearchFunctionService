@@ -16,7 +16,7 @@ public class Media {
     private String title;
 
     @Column(name = "media_type", nullable = false, length = 100)
-    private String mediaCategory;
+    private String mediaType;
 
     @Column(name = "genre", nullable = false, length = 100)
     private String genre;
@@ -60,12 +60,12 @@ public class Media {
         this.title = title;
     }
 
-    public String getMediaCategory() {
-        return mediaCategory;
+    public String getMediaType() {
+        return mediaType;
     }
 
-    public void setMediaCategory(String mediaCategory) {
-        this.mediaCategory = mediaCategory;
+    public void setMediaType(String mediaType) {
+        this.mediaType = mediaType;
     }
 
     public String getGenre() {
