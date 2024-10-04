@@ -7,8 +7,8 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "users")
-public class Users {
+@Table(name = "user")
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -33,15 +33,7 @@ public class Users {
     @Column(name = "enabled", nullable = false)
     private boolean enabled = true; */
 
-    public Users() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public User() {
     }
 
     public String getUsername() {

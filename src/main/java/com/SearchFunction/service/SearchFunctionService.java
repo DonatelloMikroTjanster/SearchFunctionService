@@ -3,7 +3,7 @@ package com.SearchFunction.service;
 import com.SearchFunction.models.Album;
 import com.SearchFunction.models.Artist;
 import com.SearchFunction.models.Media;
-import com.SearchFunction.models.Users;
+import com.SearchFunction.models.User;
 import com.SearchFunction.repository.AlbumRepository;
 import com.SearchFunction.repository.ArtistRepository;
 import com.SearchFunction.repository.MediaRepository;
@@ -30,7 +30,7 @@ public class SearchFunctionService {
     private UsersRepository usersRepository;
 
 
-    public Optional<Users> searchUserByUsername(String username) {
+    public Optional<User> searchUserByUsername(String username) {
         return usersRepository.findByUsername(username);
     }
 

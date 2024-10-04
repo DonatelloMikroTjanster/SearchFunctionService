@@ -3,7 +3,7 @@ package com.SearchFunction.controllers;
 import com.SearchFunction.models.Album;
 import com.SearchFunction.models.Artist;
 import com.SearchFunction.models.Media;
-import com.SearchFunction.models.Users;
+import com.SearchFunction.models.User;
 import com.SearchFunction.service.SearchFunctionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,8 +20,8 @@ public class SearchFunctionController {
     private SearchFunctionService searchFunctionService;
 
     @GetMapping("/users")
-    public ResponseEntity<Optional<Users>> searchUserByUsername(@RequestParam String username) {
-        Optional<Users> user = searchFunctionService.searchUserByUsername(username);
+    public ResponseEntity<Optional<User>> searchUserByUsername(@RequestParam String username) {
+        Optional<User> user = searchFunctionService.searchUserByUsername(username);
         return ResponseEntity.ok(user);
     }
 
