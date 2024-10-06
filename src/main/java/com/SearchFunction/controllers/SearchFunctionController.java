@@ -1,9 +1,9 @@
 package com.SearchFunction.controllers;
 
 import com.SearchFunction.models.Album;
-import com.SearchFunction.models.Artists;
+import com.SearchFunction.models.Artist;
 import com.SearchFunction.models.Media;
-import com.SearchFunction.models.Users;
+import com.SearchFunction.models.User;
 import com.SearchFunction.service.SearchFunctionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,14 +20,14 @@ public class SearchFunctionController {
     private SearchFunctionService searchFunctionService;
 
     @GetMapping("/users")
-    public ResponseEntity<Optional<Users>> searchUserByUsername(@RequestParam String username) {
-        Optional<Users> user = searchFunctionService.searchUserByUsername(username);
+    public ResponseEntity<Optional<User>> searchUserByUsername(@RequestParam String username) {
+        Optional<User> user = searchFunctionService.searchUserByUsername(username);
         return ResponseEntity.ok(user);
     }
 
     @GetMapping("/artists")
-    public ResponseEntity<List<Artists>> searchArtistByName(@RequestParam String artistName) {
-        List<Artists> artists = searchFunctionService.searchArtistByName(artistName);
+    public ResponseEntity<List<Artist>> searchArtistByName(@RequestParam String artistName) {
+        List<Artist> artists = searchFunctionService.searchArtistByName(artistName);
         return ResponseEntity.ok(artists);
     }
 
@@ -68,14 +68,14 @@ public class SearchFunctionController {
     }
 
     @GetMapping("/artists/album-date")
-    public ResponseEntity<List<Artists>> searchArtistByAlbumDate(@RequestParam int albumDate) {
-        List<Artists> artists = searchFunctionService.searchArtistByAlbumDate(albumDate);
+    public ResponseEntity<List<Artist>> searchArtistByAlbumDate(@RequestParam int albumDate) {
+        List<Artist> artists = searchFunctionService.searchArtistByAlbumDate(albumDate);
         return ResponseEntity.ok(artists);
     }
 
     @GetMapping("/artists/genre")
-    public ResponseEntity<List<Artists>> searchArtistByGenre(@RequestParam String genre) {
-        List<Artists> artists = searchFunctionService.searchArtistByGenre(genre);
+    public ResponseEntity<List<Artist>> searchArtistByGenre(@RequestParam String genre) {
+        List<Artist> artists = searchFunctionService.searchArtistByGenre(genre);
         return ResponseEntity.ok(artists);
     }
 }

@@ -1,14 +1,13 @@
 package com.SearchFunction.repository;
 
 import com.SearchFunction.models.Album;
-import com.SearchFunction.models.Artists;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface AlbumRepository extends JpaRepository<Album, Integer> {
+public interface AlbumRepository extends JpaRepository<Album, Long> {
 
 
     List<Album> findByAlbumNameContainingIgnoreCase(String albumName);

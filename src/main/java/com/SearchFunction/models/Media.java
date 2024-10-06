@@ -2,51 +2,62 @@ package com.SearchFunction.models;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
+@Table(name = "media")
 public class Media {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
-    @Column(name = "media_type", nullable = false)
+    @Column(name = "title", length = 100, nullable = false)
+    private String title;
+
+    @Column(name = "media_type", nullable = false, length = 100)
     private String mediaType;
 
-    @Column(name = "genre", nullable = false)
+    @Column(name = "genre", nullable = false, length = 100)
     private String genre;
 
-    @Column(name = "release_date")
+    @Column(name = "release_date", nullable = false, length = 100)
     private LocalDate releaseDate;
 
-    @Column(name = "url", nullable = false)
+    @Column(name = "url", nullable = false, length = 100)
     private String url;
 
-    @ManyToOne
-    @JoinColumn(name = "album_id", nullable = false)
+    @Column(name = "duration", nullable = false, length = 100)
+    private String duration;
+
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
+    @JoinColumn(name = "album_id")
     private Album album;
-    @ManyToOne
-    @JoinColumn(name = "artist_id")
-    private Artists artist;
+
+    @ManyToMany (cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
+    @JoinTable(name = "media_artist",
+            joinColumns = @JoinColumn(name = "media_id"),
+            inverseJoinColumns = @JoinColumn(name = "artist_id"))
+    private Set<Artist> artists = new HashSet<>();
 
     public Media() {
     }
 
-    public Media(int id, String mediaType, String genre, LocalDate releaseDate, String url, Album album) {
-        this.id = id;
-        this.mediaType = mediaType;
-        this.genre = genre;
-        this.releaseDate = releaseDate;
-        this.url = url;
-        this.album = album;
-    }
-
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getMediaType() {
@@ -81,11 +92,27 @@ public class Media {
         this.url = url;
     }
 
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
+
     public Album getAlbum() {
         return album;
     }
 
     public void setAlbum(Album album) {
         this.album = album;
+    }
+
+    public Set<Artist> getArtists() {
+        return artists;
+    }
+
+    public void setArtists(Set<Artist> artists) {
+        this.artists = artists;
     }
 }
